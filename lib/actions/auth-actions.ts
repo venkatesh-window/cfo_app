@@ -2,8 +2,8 @@
 
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
-import sql from './db'
-import { hashPassword, verifyPassword, createSession, deleteSession } from './auth'
+import sql from '../db'
+import { hashPassword, verifyPassword, createSession, deleteSession } from '../auth'
 
 export async function registerAction(formData: FormData) {
   const name = formData.get('name') as string
