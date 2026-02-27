@@ -1,8 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { logoutAction } from '@/lib/actions/auth-actions'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   LayoutDashboard,
   MessageSquarePlus,
@@ -25,6 +24,13 @@ const navItems = [
 
 export default function AppSidebar({ userName }: { userName: string }) {
   const pathname = usePathname()
+  const router = useRouter()
+
+  async function handleLogout() {
+    await fetch('/api/auth/logout', { method: 'POST' })
+    router.push('/login')
+    router.refresh()
+  }
 
   return (
     <aside className="hidden md:flex flex-col w-60 border-r border-border bg-sidebar h-screen sticky top-0 shrink-0">
@@ -66,17 +72,15 @@ export default function AppSidebar({ userName }: { userName: string }) {
           </div>
           <span className="text-sm text-foreground font-medium truncate">{userName}</span>
         </div>
-        <form action={logoutAction}>
-          <Button
-            variant="ghost"
-            size="sm"
-            type="submit"
-            className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive"
-          >
-            <LogOut className="w-4 h-4" />
-            Sign Out
-          </Button>
-        </form>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleLogout}
+          className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive"
+        >
+          <LogOut className="w-4 h-4" />
+          Sign Out
+        </Button>
       </div>
     </aside>
   )

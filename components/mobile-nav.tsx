@@ -2,8 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { logoutAction } from '@/lib/actions/auth-actions'
+import { usePathname, useRouter } from 'next/navigation'
 import {
   LayoutDashboard,
   MessageSquarePlus,
@@ -29,6 +28,14 @@ const navItems = [
 export default function MobileNav({ userName }: { userName: string }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
+  const router = useRouter()
+
+  async function handleLogout() {
+    await fetch('/api/auth/logout', { method: 'POST' })
+    setOpen(false)
+    router.push('/login')
+    router.refresh()
+  }
 
   return (
     <>
@@ -84,17 +91,15 @@ export default function MobileNav({ userName }: { userName: string }) {
                 </div>
                 <span className="text-sm font-medium truncate">{userName}</span>
               </div>
-              <form action={logoutAction}>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  type="submit"
-                  className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive"
-                >
-                  <LogOut className="w-4 h-4" />
-                  Sign Out
-                </Button>
-              </form>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleLogout}
+                className="w-full justify-start gap-3 text-muted-foreground hover:text-destructive"
+              >
+                <LogOut className="w-4 h-4" />
+                Sign Out
+              </Button>
             </div>
           </aside>
         </div>
