@@ -1,0 +1,39 @@
+﻿Γû▓ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 4.5s
+  Skipping validation of types
+  Collecting page data using 11 workers ...
+node.exe : Error: No 
+database connection string 
+was provided to `neon()`. 
+Perhaps an environment 
+variable has not been set?
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (Error:   
+  No datab...s not been se   
+ t?:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+    at <unknown> (C:\Users\gs
+ven\cfo_app\.next\server\chun
+ks\[root-of-the-server]__66ad
+397f._.js:19:11144)
+
+> Build error occurred
+Error: Failed to collect 
+page data for 
+/api/auth/register
+    at ignore-listed frames {
+  type: 'Error'
+}

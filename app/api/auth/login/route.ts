@@ -34,7 +34,8 @@ export async function POST(req: NextRequest) {
       path: '/',
     })
     return response
-  } catch {
-    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 500 })
+  } catch (error: any) {
+    console.error('Login error:', error)
+    return NextResponse.json({ error: 'Something went wrong. Please try again. ' + (error.message || '') }, { status: 500 })
   }
 }

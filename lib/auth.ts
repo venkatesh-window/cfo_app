@@ -45,15 +45,17 @@ export async function getSession(): Promise<User | null> {
     const sessionId = cookieStore.get('session_id')?.value
     if (!sessionId) return null
 
+    const now = new Date().toISOString()
     const rows = await sql`
       SELECT u.id, u.name, u.phone_or_email, u.created_at
       FROM sessions s
       JOIN users u ON u.id = s.user_id
       WHERE s.id = ${sessionId}
-        AND s.expires_at > NOW()
+        AND s.expires_at > ${now}
     `
     return (rows[0] as User) ?? null
-  } catch {
+  } catch (error) {
+    console.error('Session error:', error)
     return null
   }
 }
