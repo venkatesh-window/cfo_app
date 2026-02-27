@@ -1,8 +1,10 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { type Transaction } from '@/lib/actions/transaction-actions'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Sparkles, Loader2 } from 'lucide-react'
+import { generateInsightsAction } from '@/lib/actions/ai-actions'
 import {
   BarChart,
   Bar,
@@ -31,6 +33,18 @@ function formatCurrency(n: number) {
 }
 
 export default function InsightsClient({ transactions }: { transactions: Transaction[] }) {
+  const [aiInsights, setAiInsights] = useState<string | null>(null)
+  const [loadingAi, setLoadingAi] = useState(false)
+
+  useEffect(() => {
+    if (transactions.length === 0 || aiInsights) return
+    setLoadingAi(true)
+    generateInsightsAction(transactions).then(res => {
+      if (res.success && res.insights) setAiInsights(res.insights)
+      setLoadingAi(false)
+    }).catch(() => setLoadingAi(false))
+  }, [transactions, aiInsights])
+
   const { monthlyData, categoryExpenses, categoryIncome, topExpenseCategories } = useMemo(() => {
     // Monthly income vs expense
     const monthMap: Record<string, { month: string; income: number; expense: number; profit: number }> = {}
@@ -82,6 +96,29 @@ export default function InsightsClient({ transactions }: { transactions: Transac
         <h1 className="text-2xl font-bold text-foreground">Insights</h1>
         <p className="text-sm text-muted-foreground mt-1">Visual breakdown of your financial performance.</p>
       </div>
+
+      {(aiInsights || loadingAi) && (
+        <Card className="bg-primary/5 border-primary/20">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-semibold flex items-center text-primary">
+              <Sparkles className="w-4 h-4 mr-2" />
+              AI Chief Financial Officer
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {loadingAi ? (
+              <div className="flex items-center text-sm text-muted-foreground">
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Analyzing your financial data...
+              </div>
+            ) : (
+              <div className="text-sm text-foreground space-y-2 leading-relaxed whitespace-pre-line">
+                {aiInsights}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
 
       {/* Monthly Overview Bar Chart */}
       <Card>

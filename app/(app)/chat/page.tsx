@@ -26,54 +26,7 @@ const CATEGORIES = [
   'Loans', 'Insurance', 'Other',
 ]
 
-function parseNaturalLanguage(text: string): ParsedEntry | null {
-  const lower = text.toLowerCase()
-
-  // Detect income keywords
-  const isIncome =
-    /\b(received|earned|got paid|income|revenue|sale|sold|collected|invoiced|payment from|deposit)\b/.test(lower)
-  const isExpense =
-    /\b(paid|spent|bought|purchased|expense|cost|charge|bill|invoice|subscription|rent|salary|payroll)\b/.test(lower)
-
-  // Extract amount
-  const amountMatch = text.match(/\$?([\d,]+(?:\.\d{1,2})?)\s*(?:k|thousand)?/i)
-  if (!amountMatch) return null
-  let amount = parseFloat(amountMatch[1].replace(/,/g, ''))
-  if (/k|thousand/i.test(amountMatch[0])) amount *= 1000
-
-  // Determine type
-  const type: 'income' | 'expense' = isIncome && !isExpense ? 'income' : 'expense'
-
-  // Infer category
-  let category = 'Other'
-  if (/rent|lease/i.test(lower)) category = 'Rent'
-  else if (/utility|utilities|electricity|water|internet|phone/i.test(lower)) category = 'Utilities'
-  else if (/payroll|salary|wage|staff|employee/i.test(lower)) category = 'Payroll'
-  else if (/marketing|ads?|advertising/i.test(lower)) category = 'Marketing'
-  else if (/software|subscription|saas/i.test(lower)) category = 'Software'
-  else if (/supplies|stationery/i.test(lower)) category = 'Supplies'
-  else if (/travel|flight|hotel|accommodation/i.test(lower)) category = 'Travel'
-  else if (/meal|food|lunch|dinner|restaurant|coffee/i.test(lower)) category = 'Meals'
-  else if (/equipment|machine|hardware/i.test(lower)) category = 'Equipment'
-  else if (/tax|taxes|irs|gst|vat/i.test(lower)) category = 'Taxes'
-  else if (/loan|mortgage|debt/i.test(lower)) category = 'Loans'
-  else if (/insurance/i.test(lower)) category = 'Insurance'
-  else if (/sale|sold|revenue|service|invoice|client/i.test(lower)) {
-    category = type === 'income' ? 'Sales' : 'Services'
-  }
-
-  // Description: remove amount from text
-  const description = text
-    .replace(/\$[\d,]+(?:\.\d{1,2})?(?:\s*(?:k|thousand))?/gi, '')
-    .replace(/[\d,]+(?:\.\d{1,2})?\s*(?:k|thousand)/gi, '')
-    .trim()
-    .replace(/\s{2,}/g, ' ')
-    || text
-
-  const date = new Date().toISOString().split('T')[0]
-
-  return { description, amount, type, category, date }
-}
+import { parseTransactionAction } from '@/lib/actions/ai-actions'
 
 export default function ChatPage() {
   const [messages, setMessages] = useState<Message[]>([
@@ -100,27 +53,30 @@ export default function ChatPage() {
     setMessages((m) => [...m, userMsg])
     setInput('')
 
-    const parsed = parseNaturalLanguage(text)
+    startTransition(async () => {
+      const res = await parseTransactionAction(text)
 
-    if (!parsed) {
-      setMessages((m) => [
-        ...m,
-        {
-          role: 'assistant',
-          text: "I couldn't detect an amount in that message. Try something like \"Paid $500 for marketing\" or \"Received $3,000 from client\".",
-        },
-      ])
-      return
-    }
+      if (!res.success || !res.parsed) {
+        setMessages((m) => [
+          ...m,
+          {
+            role: 'assistant',
+            text: res.error || "I couldn't understand that transaction. Try something like \"Paid $500 for marketing\" or \"Received $3,000 from client\".",
+          },
+        ])
+        return
+      }
 
-    const assistantMsg: Message = {
-      role: 'assistant',
-      text: `Got it! Here's what I parsed:`,
-      parsed,
-    }
-    setMessages((m) => [...m, assistantMsg])
-    setPendingEntry(parsed)
-    setEditEntry({ ...parsed })
+      const parsed = res.parsed
+      const assistantMsg: Message = {
+        role: 'assistant',
+        text: `Got it! Here's what I compiled with AI:`,
+        parsed,
+      }
+      setMessages((m) => [...m, assistantMsg])
+      setPendingEntry(parsed)
+      setEditEntry({ ...parsed })
+    })
   }
 
   function handleConfirm() {
