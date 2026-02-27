@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
   MessageSquarePlus,
@@ -28,13 +28,10 @@ const navItems = [
 export default function MobileNav({ userName }: { userName: string }) {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
-  const router = useRouter()
 
   async function handleLogout() {
     await fetch('/api/auth/logout', { method: 'POST' })
-    setOpen(false)
-    router.push('/login')
-    router.refresh()
+    window.location.href = '/login'
   }
 
   return (

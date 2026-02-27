@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import {
   LayoutDashboard,
   MessageSquarePlus,
@@ -24,12 +24,10 @@ const navItems = [
 
 export default function AppSidebar({ userName }: { userName: string }) {
   const pathname = usePathname()
-  const router = useRouter()
 
   async function handleLogout() {
     await fetch('/api/auth/logout', { method: 'POST' })
-    router.push('/login')
-    router.refresh()
+    window.location.href = '/login'
   }
 
   return (

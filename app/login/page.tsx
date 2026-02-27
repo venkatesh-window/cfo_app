@@ -32,8 +32,7 @@ export default function LoginPage() {
       if (!res.ok) {
         setError(data.error ?? 'Something went wrong.')
       } else {
-        router.push('/dashboard')
-        router.refresh()
+        window.location.href = '/dashboard'
       }
     } catch {
       setError('Network error. Please try again.')
@@ -61,8 +60,7 @@ export default function LoginPage() {
       if (!res.ok) {
         setError(data.error ?? 'Something went wrong.')
       } else {
-        router.push('/dashboard')
-        router.refresh()
+        window.location.href = '/dashboard'
       }
     } catch {
       setError('Network error. Please try again.')
