@@ -5,7 +5,7 @@ import { addTransaction } from '@/lib/actions/transaction-actions'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { ArrowUpRight, ArrowDownRight, Send, CheckCircle2, Sparkles } from 'lucide-react'
+import { ArrowUpRight, ArrowDownRight, Send, CheckCircle2, Sparkles, Mic } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type ParsedEntry = {
@@ -39,11 +39,40 @@ export default function ChatPage() {
   const [pendingEntry, setPendingEntry] = useState<ParsedEntry | null>(null)
   const [isPending, startTransition] = useTransition()
   const [editEntry, setEditEntry] = useState<ParsedEntry | null>(null)
+  const [isListening, setIsListening] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  function handleVoice() {
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+    if (!SpeechRecognition) {
+      alert("Your browser doesn't support voice recognition. Please try Chrome, Edge, or Safari.")
+      return
+    }
+
+    const recognition = new SpeechRecognition()
+    recognition.continuous = false
+    recognition.interimResults = false
+
+    recognition.onstart = () => setIsListening(true)
+
+    recognition.onresult = (event: any) => {
+      const transcript = event.results[0][0].transcript
+      setInput((prev) => prev + (prev ? ' ' : '') + transcript)
+    }
+
+    recognition.onerror = (event: any) => {
+      console.error('Speech error:', event.error)
+      setIsListening(false)
+    }
+
+    recognition.onend = () => setIsListening(false)
+
+    recognition.start()
+  }
 
   function handleSend() {
     const text = input.trim()
@@ -209,6 +238,17 @@ export default function ChatPage() {
 
         {/* Input bar */}
         <div className="border-t border-border p-3 flex gap-2 bg-background">
+          <Button
+            type="button"
+            variant={isListening ? 'destructive' : 'outline'}
+            size="icon"
+            onClick={handleVoice}
+            disabled={!!pendingEntry || isPending}
+            aria-label="Use voice input"
+            className={cn(isListening && 'animate-pulse')}
+          >
+            <Mic className="w-4 h-4" />
+          </Button>
           <Input
             placeholder="e.g. Received $2,500 from client ABC…"
             value={input}
