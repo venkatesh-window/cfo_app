@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  serverExternalPackages: ['bcryptjs', '@neondatabase/serverless'],
+  serverExternalPackages: ['@neondatabase/serverless'],
 }
 
 export default nextConfig
