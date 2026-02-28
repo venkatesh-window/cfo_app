@@ -1,0 +1,347 @@
+text,category
+Bought rice,Inventory
+Rice purchase,Inventory
+Milk purchase,Inventory
+Bought sugar,Inventory
+Bought oil,Inventory
+Purchased vegetables,Inventory
+Bought biscuits,Inventory
+Bought tea powder,Inventory
+Bought coffee powder,Inventory
+Bought wheat,Inventory
+Rice 500,Inventory
+Milk 40,Inventory
+Sugar 100,Inventory
+Oil 200,Inventory
+Vegetables 150,Inventory
+Biscuits 80,Inventory
+Tea powder 120,Inventory
+Coffee 200,Inventory
+Wheat 300,Inventory
+Dal purchase,Inventory
+Bought dal,Inventory
+Bought snacks,Inventory
+Bought chocolates,Inventory
+Bought bread,Inventory
+Bought eggs,Inventory
+Bread purchase,Inventory
+Eggs purchase,Inventory
+Purchased rice bag,Inventory
+Purchased milk packets,Inventory
+Purchased cooking oil,Inventory
+Stock rice,Inventory
+Stock milk,Inventory
+Stock oil,Inventory
+Stock vegetables,Inventory
+Inventory rice,Inventory
+Inventory milk,Inventory
+Inventory oil,Inventory
+Inventory vegetables,Inventory
+Rice stock,Inventory
+Milk stock,Inventory
+Purchased soap,Inventory
+Purchased shampoo,Inventory
+Purchased toothpaste,Inventory
+Soap stock,Inventory
+Shampoo stock,Inventory
+Toothpaste stock,Inventory
+Purchased grocery items,Inventory
+Bought grocery items,Inventory
+Grocery purchase,Inventory
+Store items purchase,Inventory
+Shop items purchase,Inventory
+Items purchase,Inventory
+Shop stock purchase,Inventory
+Inventory purchase,Inventory
+Purchased goods,Inventory
+Goods purchase,Inventory
+Bought food items,Inventory
+Food purchase,Inventory
+Store purchase,Inventory
+Retail stock,Inventory
+Shop stock,Inventory
+Rice items purchase,Inventory
+Milk items purchase,Inventory
+Stock refill,Inventory
+Refilled stock,Inventory
+Added stock,Inventory
+New stock purchase,Inventory
+Purchase rice bag,Inventory
+Purchase oil can,Inventory
+Purchase milk box,Inventory
+Purchase sugar bag,Inventory
+Purchase wheat bag,Inventory
+Rice buying,Inventory
+Milk buying,Inventory
+Sugar buying,Inventory
+Oil buying,Inventory
+Stock groceries,Inventory
+Stock foods,Inventory
+Stock items,Inventory
+Shop inventory purchase,Inventory
+Store inventory purchase,Inventory
+Business stock purchase,Inventory
+Retail purchase,Inventory
+Inventory refill,Inventory
+Stock refill purchase,Inventory
+Rice bought,Inventory
+Milk bought,Inventory
+Sugar bought,Inventory
+Oil bought,Inventory
+Dal bought,Inventory
+Vegetables bought,Inventory
+Food items bought,Inventory
+Groceries bought,Inventory
+Shop goods bought,Inventory
+Store goods bought,Inventory
+Sold rice,Revenue
+Sold milk,Revenue
+Sold tea,Revenue
+Sold coffee,Revenue
+Sold biscuits,Revenue
+Rice sale,Revenue
+Milk sale,Revenue
+Tea sale,Revenue
+Coffee sale,Revenue
+Biscuits sale,Revenue
+Sales today,Revenue
+Daily sales,Revenue
+Shop sales,Revenue
+Store sales,Revenue
+Business sales,Revenue
+Customer purchase,Revenue
+Customer payment,Revenue
+Received cash,Revenue
+Received money,Revenue
+Received payment,Revenue
+Sold items,Revenue
+Sold goods,Revenue
+Items sold,Revenue
+Goods sold,Revenue
+Product sale,Revenue
+Products sold,Revenue
+Shop income,Revenue
+Store income,Revenue
+Business income,Revenue
+Income today,Revenue
+Rice sold,Revenue
+Milk sold,Revenue
+Tea sold,Revenue
+Coffee sold,Revenue
+Biscuits sold,Revenue
+Sold groceries,Revenue
+Sold vegetables,Revenue
+Sold eggs,Revenue
+Sold bread,Revenue
+Sold snacks,Revenue
+Sale 200,Revenue
+Sale 500,Revenue
+Sale 1000,Revenue
+Sales 300,Revenue
+Sales 800,Revenue
+Cash sale,Revenue
+Online sale,Revenue
+UPI sale,Revenue
+Customer paid,Revenue
+Customer paid cash,Revenue
+Customer paid online,Revenue
+Payment received,Revenue
+Money received,Revenue
+Received sales money,Revenue
+Daily income,Revenue
+Shop earnings,Revenue
+Store earnings,Revenue
+Business earnings,Revenue
+Earnings today,Revenue
+Total sales,Revenue
+Total income,Revenue
+Sold products,Revenue
+Product income,Revenue
+Item income,Revenue
+Goods income,Revenue
+Rice income,Revenue
+Milk income,Revenue
+Tea income,Revenue
+Coffee income,Revenue
+Snacks income,Revenue
+Food income,Revenue
+Grocery income,Revenue
+Store revenue,Revenue
+Shop revenue,Revenue
+Business revenue,Revenue
+Revenue today,Revenue
+Daily revenue,Revenue
+Income received,Revenue
+Cash received,Revenue
+UPI received,Revenue
+Online received,Revenue
+Sale amount received,Revenue
+Sales completed,Revenue
+Shop sales completed,Revenue
+Store sales completed,Revenue
+Products sold today,Revenue
+Goods sold today,Revenue
+Items sold today,Revenue
+Paid rent,Utilities
+Shop rent,Utilities
+Electricity bill,Utilities
+Water bill,Utilities
+Internet bill,Utilities
+Rent payment,Utilities
+Electricity payment,Utilities
+Water payment,Utilities
+Internet payment,Utilities
+Shop electricity,Utilities
+Shop water bill,Utilities
+Shop internet bill,Utilities
+Monthly rent,Utilities
+Monthly electricity,Utilities
+Monthly water,Utilities
+Monthly internet,Utilities
+Rent 5000,Utilities
+Electricity 1000,Utilities
+Water 500,Utilities
+Internet 800,Utilities
+Paid EB bill,Utilities
+Paid current bill,Utilities
+Paid shop rent,Utilities
+Paid building rent,Utilities
+Shop bill payment,Utilities
+Store bill payment,Utilities
+Business bills,Utilities
+Utility bills,Utilities
+Bills payment,Utilities
+Electric bill paid,Utilities
+Water bill paid,Utilities
+Internet bill paid,Utilities
+Rent bill paid,Utilities
+Shop expenses,Utilities
+Store expenses,Utilities
+Business expenses,Utilities
+Utility expenses,Utilities
+Electric expense,Utilities
+Water expense,Utilities
+Internet expense,Utilities
+Rent expense,Utilities
+EB expense,Utilities
+Current expense,Utilities
+Utility payment,Utilities
+Bills paid,Utilities
+Monthly bills,Utilities
+Paid monthly bills,Utilities
+Paid EB,Utilities
+Paid electricity,Utilities
+Paid water,Utilities
+Paid internet,Utilities
+Paid rent today,Utilities
+Bills paid today,Utilities
+Electricity charges,Utilities
+Water charges,Utilities
+Internet charges,Utilities
+Rent charges,Utilities
+Building rent,Utilities
+Shop building rent,Utilities
+Store building rent,Utilities
+Office rent,Utilities
+Office electricity,Utilities
+Office water,Utilities
+Office internet,Utilities
+Electric charges paid,Utilities
+Water charges paid,Utilities
+Internet charges paid,Utilities
+Rent charges paid,Utilities
+Bill expense,Utilities
+Utility expense,Utilities
+Monthly expense bills,Utilities
+Utility cost,Utilities
+Rent cost,Utilities
+Electric cost,Utilities
+Water cost,Utilities
+Internet cost,Utilities
+Petrol expense,Transport
+Diesel expense,Transport
+Auto fare,Transport
+Bus ticket,Transport
+Train ticket,Transport
+Petrol 200,Transport
+Diesel 500,Transport
+Fuel expense,Transport
+Fuel payment,Transport
+Travel expense,Transport
+Transport expense,Transport
+Vehicle petrol,Transport
+Vehicle diesel,Transport
+Bike petrol,Transport
+Car petrol,Transport
+Fuel charges,Transport
+Travel charges,Transport
+Transport charges,Transport
+Petrol charges,Transport
+Diesel charges,Transport
+Petrol refill,Transport
+Diesel refill,Transport
+Fuel refill,Transport
+Travel cost,Transport
+Transport cost,Transport
+Petrol cost,Transport
+Diesel cost,Transport
+Vehicle fuel,Transport
+Fuel bill,Transport
+Petrol bill,Transport
+Diesel bill,Transport
+Travel bill,Transport
+Transport bill,Transport
+Bus fare,Transport
+Auto fare paid,Transport
+Taxi fare,Transport
+Taxi payment,Transport
+Delivery expense,Transport
+Delivery charges,Transport
+Courier expense,Transport
+Courier charges,Transport
+Travel petrol,Transport
+Travel diesel,Transport
+Bike fuel,Transport
+Car fuel,Transport
+Vehicle expense,Transport
+Vehicle charges,Transport
+Transport payment,Transport
+Travel payment,Transport
+Fuel paid,Transport
+Petrol paid,Transport
+Diesel paid,Transport
+Petrol money,Transport
+Diesel money,Transport
+Fuel money,Transport
+Transport money,Transport
+Travel money,Transport
+Other expense,Misc
+Misc expense,Misc
+Small expense,Misc
+Cleaning expense,Misc
+Repair expense,Misc
+Maintenance expense,Misc
+Shop repair,Misc
+Store repair,Misc
+Office repair,Misc
+Random expense,Misc
+Unexpected expense,Misc
+Extra expense,Misc
+Small purchase,Misc
+General expense,Misc
+Daily expense,Misc
+Other cost,Misc
+Misc cost,Misc
+Extra cost,Misc
+Repair cost,Misc
+Maintenance cost,Misc
+Cleaning cost,Misc
+Shop cleaning,Misc
+Store cleaning,Misc
+Office cleaning,Misc
+Small payment,Misc
+Other payment,Misc
+Misc payment,Misc
+General payment,Misc
+Extra payment,Misc
+Random payment,Misc
