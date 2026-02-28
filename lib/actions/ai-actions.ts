@@ -7,7 +7,7 @@ import { Transaction } from './transaction-actions'
 const apiKey = process.env.GEMINI_API_KEY || ''
 const genAI = new GoogleGenerativeAI(apiKey)
 
-export async function parseTransactionAction(text: string) {
+export async function parseTransactionAction(text: string, language: string = 'English') {
     const user = await getSession()
     if (!user) throw new Error('Unauthorized')
 
@@ -24,11 +24,11 @@ export async function parseTransactionAction(text: string) {
 
     // We want to return { description, amount, type, category, date }
     const prompt = `You are a helpful financial assistant parsing a user's transaction.
-Parse the following message into a JSON object.
+Parse the following message (which may be in ${language}) into a JSON object. Translate the description to English if it is in another language.
 Message: "${text}"
 
 The JSON object must have the following keys exactly:
-- "description": A clean, concise description of the transaction (without amounts).
+- "description": A clean, concise description of the transaction in English (without amounts).
 - "amount": A number representing the numerical amount (absolute value, no currency symbols).
 - "type": A string, either "income" or "expense".
 - "category": Choose one of the following exact strings: Sales, Services, Rent, Utilities, Payroll, Marketing, Supplies, Travel, Meals, Software, Equipment, Taxes, Loans, Insurance, Other.

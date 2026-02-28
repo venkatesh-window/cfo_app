@@ -26,6 +26,12 @@ const CATEGORIES = [
   'Loans', 'Insurance', 'Other',
 ]
 
+const LANGUAGES = [
+  { code: 'en-US', name: 'English' },
+  { code: 'ta-IN', name: 'Tamil' },
+  { code: 'hi-IN', name: 'Hindi' }
+]
+
 import { parseTransactionAction } from '@/lib/actions/ai-actions'
 
 export default function ChatPage() {
@@ -40,6 +46,7 @@ export default function ChatPage() {
   const [isPending, startTransition] = useTransition()
   const [editEntry, setEditEntry] = useState<ParsedEntry | null>(null)
   const [isListening, setIsListening] = useState(false)
+  const [selectedLang, setSelectedLang] = useState(LANGUAGES[0])
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -56,6 +63,7 @@ export default function ChatPage() {
     const recognition = new SpeechRecognition()
     recognition.continuous = false
     recognition.interimResults = false
+    recognition.lang = selectedLang.code
 
     recognition.onstart = () => setIsListening(true)
 
@@ -83,7 +91,7 @@ export default function ChatPage() {
     setInput('')
 
     startTransition(async () => {
-      const res = await parseTransactionAction(text)
+      const res = await parseTransactionAction(text, selectedLang.name)
 
       if (!res.success || !res.parsed) {
         setMessages((m) => [
@@ -135,11 +143,23 @@ export default function ChatPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Add Transaction</h1>
-        <p className="text-muted-foreground text-sm mt-1">
-          Describe a transaction in plain English and I'll record it.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold text-foreground">Add Transaction</h1>
+          <p className="text-muted-foreground text-sm mt-1">
+            Describe a transaction in {selectedLang.name} and I'll record it.
+          </p>
+        </div>
+        <select
+          className="border border-border rounded-md px-3 py-1.5 text-sm bg-background hover:bg-muted cursor-pointer"
+          value={selectedLang.code}
+          onChange={(e) => setSelectedLang(LANGUAGES.find(l => l.code === e.target.value) || LANGUAGES[0])}
+          aria-label="Select Input Language"
+        >
+          {LANGUAGES.map((l) => (
+            <option key={l.code} value={l.code}>{l.name}</option>
+          ))}
+        </select>
       </div>
 
       {/* Chat window */}
