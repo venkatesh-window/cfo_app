@@ -72,6 +72,7 @@ export default function ChatPage() {
       setInput((prev) => prev + (prev ? ' ' : '') + transcript)
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     recognition.onerror = (event: any) => {
       console.error('Speech error:', event.error)
       setIsListening(false)
